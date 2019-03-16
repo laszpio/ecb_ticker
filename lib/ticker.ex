@@ -11,6 +11,9 @@ defmodule Ticker do
         case body |> parse_response_body do
           {:ok, response} -> display_ticker(response)
         end
+
+      %HTTPotion.ErrorResponse{message: message} ->
+        {:error, message}
     end
   end
 
