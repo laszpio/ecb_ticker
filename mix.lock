@@ -1,0 +1,6 @@
+%{
+  "httpotion": {:hex, :httpotion, "3.1.1", "b8ad199dea2c56a70c89e7f9e4d09898c7e85871783b7417c04cb4f1d4d8e919", [:mix], [{:ibrowse, "== 4.4.0", [hex: :ibrowse, repo: "hexpm", optional: false]}], "hexpm"},
+  "ibrowse": {:hex, :ibrowse, "4.4.0", "2d923325efe0d2cb09b9c6a047b2835a5eda69d8a47ed6ff8bc03628b764e991", [:rebar3], [], "hexpm"},
+  "jason": {:hex, :jason, "1.1.2", "b03dedea67a99223a2eaf9f1264ce37154564de899fd3d8b9a21b1a6fd64afe7", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
+  "sweet_xml": {:hex, :sweet_xml, "0.6.6", "fc3e91ec5dd7c787b6195757fbcf0abc670cee1e4172687b45183032221b66b8", [:mix], [], "hexpm"},
+}
