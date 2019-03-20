@@ -29,4 +29,40 @@ defmodule TickerTest do
              {"IDR", 16082.0}
            ]
   end
+
+  @historic [
+    %{
+      "time" => "2019-03-20",
+      "Cube" => [
+        %{"currency" => "USD", "rate" => "1.1354"},
+        %{"currency" => "IDR", "rate" => "16082"}
+      ]
+    },
+    %{
+      "time" => "2019-03-21",
+      "Cube" => [
+        %{"currency" => "USD", "rate" => "1.787"},
+        %{"currency" => "IDR", "rate" => "16082.77"}
+      ]
+    }
+  ]
+
+  test "extracts rates for all dail in historic feed" do
+    assert extract_rates(@historic) == [
+             %{
+               date: "2019-03-20",
+               rates: [
+                 {"USD", 1.1354},
+                 {"IDR", 16082.0}
+               ]
+             },
+             %{
+               date: "2019-03-21",
+               rates: [
+                 {"USD", 1.787},
+                 {"IDR", 16082.77}
+               ]
+             }
+           ]
+  end
 end
