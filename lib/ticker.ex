@@ -18,19 +18,25 @@ defmodule Ticker do
     end
   end
 
-  defp parse_response_body(response) do
+  def parse_response_body(response) do
     case XmlToMap.naive_map(response) do
       %{"{http://www.gesmes.org/xml/2002-08-01}Envelope" => data} -> {:ok, data}
       {:error, message} -> {:error, message}
     end
   end
 
-  defp process_response_data(data) do
-    data = data |> Map.get("Cube") |> Map.get("Cube")
+  def process_response_data(data) do
+    data
+    |> Map.get("Cube")
+    |> Map.get("Cube")
+    |> extract_rates()
+  end
 
+  def extract_rates(data) when is_map(data) do
     %{
       date: data["time"],
-      rates: Enum.map(data["Cube"], fn r -> {r["currency"], r["rate"] |> String.to_float()} end)
+      rates:
+        Enum.map(data["Cube"], fn r -> {r["currency"], r["rate"] |> Float.parse() |> elem(0)} end)
     }
   end
 end
