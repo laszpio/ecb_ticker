@@ -39,4 +39,8 @@ defmodule Ticker do
         Enum.map(data["Cube"], fn r -> {r["currency"], r["rate"] |> Float.parse() |> elem(0)} end)
     }
   end
+
+  def extract_rates(data) when is_list(data) do
+    data |> Enum.map(&extract_rates(&1))
+  end
 end
