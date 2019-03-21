@@ -4,9 +4,20 @@ defmodule TickerTest do
 
   import Ticker
 
+  @envelope """
+  <gesmes:Envelope xmlns:gesmes="http://www.gesmes.org/xml/2002-08-01" xmlns="http://www.ecb.int/vocabulary/2002-08-01/eurofxref">
+    <gesmes:subject>Reference rates</gesmes:subject>
+    <gesmes:Sender>
+      <gesmes:name>European Central Bank</gesmes:name>
+    </gesmes:Sender>
+    <Cube>
+      data container
+    </Cube>
+  </gesmes:Envelope>
+  """
+
   test "returns response XML's envelope" do
-    envelope = File.read!("test/eurofxref-envelope.xml")
-    {:ok, response} = parse_response_body(envelope)
+    {:ok, response} = parse_response_body(@envelope)
 
     assert response |> Map.get("Cube") == "data container"
   end
