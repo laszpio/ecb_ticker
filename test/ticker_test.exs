@@ -87,11 +87,11 @@ defmodule TickerTest do
     assert endpoint_url(:historic) == @feed_base <> "/eurofxref-hist-90d.xml"
   end
 
-  test "returns daily currency feed" do
+  test "returns daily currency rates" do
     assert is_map(daily())
   end
 
-  test "returns historic currency feed" do
+  test "returns historic currency rates" do
     assert is_list(historic())
   end
 end

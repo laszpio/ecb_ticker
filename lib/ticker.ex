@@ -47,12 +47,11 @@ defmodule Ticker do
   end
 
   def endpoint_url(feed) do
-    scope =
-      case feed do
-        :historic -> "hist-90d"
-        _ -> :daily
-      end
+    base_url = "https://www.ecb.europa.eu/stats/eurofxref"
 
-    "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-#{scope}.xml"
+    case feed do
+      :historic -> base_url <> "/eurofxref-hist-90d.xml"
+      _ -> base_url <> "/eurofxref-daily.xml"
+    end
   end
 end
