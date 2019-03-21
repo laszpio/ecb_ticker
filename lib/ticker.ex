@@ -35,8 +35,10 @@ defmodule Ticker do
   end
 
   def extract_rates(data) when is_map(data) do
+    {:ok, date} = data["time"] |> Date.from_iso8601()
+
     %{
-      date: data["time"],
+      date: date,
       rates:
         Enum.map(data["Cube"], fn r -> {r["currency"], r["rate"] |> Float.parse() |> elem(0)} end)
     }
