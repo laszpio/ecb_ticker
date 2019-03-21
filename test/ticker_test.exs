@@ -76,4 +76,22 @@ defmodule TickerTest do
              }
            ]
   end
+
+  @feed_base "https://www.ecb.europa.eu/stats/eurofxref"
+
+  test "returns daily EBC feed url" do
+    assert endpoint_url(:daily) == @feed_base <> "/eurofxref-daily.xml"
+  end
+
+  test "returns historic 90 days feed url" do
+    assert endpoint_url(:historic) == @feed_base <> "/eurofxref-hist-90d.xml"
+  end
+
+  test "returns daily currency feed" do
+    assert is_map(daily())
+  end
+
+  test "returns historic currency feed" do
+    assert is_list(historic())
+  end
 end

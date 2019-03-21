@@ -3,10 +3,12 @@ defmodule Ticker do
   European Central Bank current foregin exchange rates.
   """
 
-  @endpoint "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+  def daily, do: query(:daily)
 
-  def query do
-    case HTTPotion.get(@endpoint) do
+  def historic, do: query(:historic)
+
+  defp query(scope) do
+    case HTTPotion.get(endpoint_url(scope)) do
       %HTTPotion.Response{body: body, status_code: 200} ->
         case body |> parse_response_body do
           {:ok, response} -> process_response_data(response)
@@ -42,5 +44,15 @@ defmodule Ticker do
 
   def extract_rates(data) when is_list(data) do
     data |> Enum.map(&extract_rates(&1))
+  end
+
+  def endpoint_url(feed) do
+    scope =
+      case feed do
+        :historic -> "hist-90d"
+        _ -> :daily
+      end
+
+    "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-#{scope}.xml"
   end
 end
