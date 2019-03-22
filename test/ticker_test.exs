@@ -118,7 +118,23 @@ defmodule TickerTest do
 
   test "returns historic currency rates" do
     use_cassette "ebc_exchangerates_90d" do
-      assert is_list(historic())
+      result = historic()
+
+      assert is_list(result)
+      assert length(result) == 61
+
+      Enum.each(result, fn daily ->
+        assert daily |> Map.has_key?(:date)
+
+        assert is_list(daily[:rates])
+        assert daily[:rates] |> length() == 32
+
+        Enum.each(daily[:rates], fn record ->
+          {currency, rate} = record
+          assert currency =~ ~r/[A-Z]{3}/
+          assert is_float(rate)
+        end)
+      end)
     end
   end
 end
