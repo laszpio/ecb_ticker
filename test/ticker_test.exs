@@ -3,6 +3,12 @@ defmodule TickerTest do
   doctest Ticker
 
   import Ticker
+  use ExVCR.Mock
+
+  setup do
+    ExVCR.Config.cassette_library_dir("fixture/vcr_cassettes")
+    :ok
+  end
 
   @envelope """
   <gesmes:Envelope xmlns:gesmes="http://www.gesmes.org/xml/2002-08-01" xmlns="http://www.ecb.int/vocabulary/2002-08-01/eurofxref">
@@ -88,10 +94,31 @@ defmodule TickerTest do
   end
 
   test "returns daily currency rates" do
-    assert is_map(daily())
+    use_cassette "ebc_exchangerates_daily" do
+      result = daily()
+
+      assert is_map(result)
+      assert result[:date] == ~D[2019-03-21]
+
+      rates = result[:rates]
+      assert is_list(rates)
+      assert rates |> length() == 32
+
+      Enum.each(rates, fn record ->
+        {currency, rate} = record
+        assert currency =~ ~r/[A-Z]{3}/
+        assert rate |> is_float()
+      end)
+
+      usd = rates |> List.first()
+      assert usd |> elem(0) == "USD"
+      assert usd |> elem(1) == 1.1387
+    end
   end
 
   test "returns historic currency rates" do
-    assert is_list(historic())
+    use_cassette "ebc_exchangerates_90d" do
+      assert is_list(historic())
+    end
   end
 end
