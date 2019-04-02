@@ -43,7 +43,7 @@ defmodule TickerTest do
   test "extracts rates for all currencies" do
     assert extract_rates(@daily) |> Map.get(:rates) == [
              {"USD", 1.1354},
-             {"IDR", 16082.0}
+             {"IDR", 16_082.0}
            ]
   end
 
@@ -70,14 +70,14 @@ defmodule TickerTest do
                date: ~D[2019-03-20],
                rates: [
                  {"USD", 1.1354},
-                 {"IDR", 16082.0}
+                 {"IDR", 16_082.0}
                ]
              },
              %{
                date: ~D[2019-03-21],
                rates: [
                  {"USD", 1.787},
-                 {"IDR", 16082.77}
+                 {"IDR", 16_082.77}
                ]
              }
            ]
