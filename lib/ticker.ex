@@ -1,10 +1,17 @@
 defmodule Ticker do
   @moduledoc """
-  European Central Bank current foregin exchange rates.
+  Provides current and historical (90 days) foreign exchange rates published by the
+  [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html).
   """
 
+  @doc """
+  Provides daily exchange rates.
+  """
   def daily, do: query(:daily)
 
+  @doc """
+  Provides historical 90 days exchange rates.
+  """
   def historical, do: query(:historical)
 
   defp query(scope) do
