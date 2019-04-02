@@ -8,7 +8,7 @@ Current foreign exchange rates published by the [European Central Bank](https://
 Ticker.daily()
 ```
 
-Sample response:
+Sample result:
 
 ```elixir
 %{
@@ -52,4 +52,33 @@ Sample response:
 
 ## Historic (last 90 days)
 
-```Ticker.historic()```
+```elixir
+Ticker.historic()
+```
+
+Sample result:
+
+```elixir
+[
+  %{
+    date: ~D[2019-04-01],
+    rates: [
+      {"USD", 1.1236},
+      {"JPY", 124.68},
+      ...
+      {"ZAR", 15.9175}
+    ]
+  },
+  %{
+    date: ~D[2019-03-29],
+    rates: [
+      {"USD", 1.1235},
+      {"JPY", 124.45},
+      ...
+      {"ZAR", 16.2642}
+    ]
+  },
+  %{...},
+  ...
+]
+```
