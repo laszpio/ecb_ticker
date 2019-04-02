@@ -5,7 +5,7 @@ defmodule Ticker do
 
   def daily, do: query(:daily)
 
-  def historic, do: query(:historic)
+  def historical, do: query(:historical)
 
   defp query(scope) do
     case HTTPotion.get(endpoint_url(scope)) do
@@ -52,7 +52,7 @@ defmodule Ticker do
     base_url = "https://www.ecb.europa.eu/stats/eurofxref"
 
     case feed do
-      :historic -> base_url <> "/eurofxref-hist-90d.xml"
+      :historical -> base_url <> "/eurofxref-hist-90d.xml"
       _ -> base_url <> "/eurofxref-daily.xml"
     end
   end

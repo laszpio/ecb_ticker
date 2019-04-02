@@ -47,7 +47,7 @@ defmodule TickerTest do
            ]
   end
 
-  @historic [
+  @historical [
     %{
       "time" => "2019-03-20",
       "Cube" => [
@@ -64,8 +64,8 @@ defmodule TickerTest do
     }
   ]
 
-  test "extracts rates for all dail in historic feed" do
-    assert extract_rates(@historic) == [
+  test "extracts rates for all dail in historical feed" do
+    assert extract_rates(@historical) == [
              %{
                date: ~D[2019-03-20],
                rates: [
@@ -89,8 +89,8 @@ defmodule TickerTest do
     assert endpoint_url(:daily) == @feed_base <> "/eurofxref-daily.xml"
   end
 
-  test "returns historic 90 days feed url" do
-    assert endpoint_url(:historic) == @feed_base <> "/eurofxref-hist-90d.xml"
+  test "returns historical (90 days) feed url" do
+    assert endpoint_url(:historical) == @feed_base <> "/eurofxref-hist-90d.xml"
   end
 
   test "returns daily currency rates" do
@@ -116,9 +116,9 @@ defmodule TickerTest do
     end
   end
 
-  test "returns historic currency rates" do
+  test "returns historical currency rates" do
     use_cassette "ebc_exchangerates_90d" do
-      result = historic()
+      result = historical()
 
       assert is_list(result)
       assert length(result) == 61
