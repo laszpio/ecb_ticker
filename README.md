@@ -1,6 +1,6 @@
 # EBC Ticker
 
-Current foreign exchange rates published by the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html).
+Current and historical (90 days) foreign exchange rates published by the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html).
 
 ## Daily
 
@@ -53,7 +53,7 @@ Sample result:
 ## Historic (last 90 days)
 
 ```elixir
-Ticker.historic()
+Ticker.historical()
 ```
 
 Sample result:
