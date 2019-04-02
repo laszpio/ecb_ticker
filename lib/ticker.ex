@@ -35,6 +35,7 @@ defmodule Ticker do
   end
 
   def process_response_data(data) do
+  defp process_response_data(data) do
     data
     |> Map.get("Cube")
     |> Map.get("Cube")
