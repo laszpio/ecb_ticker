@@ -40,6 +40,10 @@ defmodule TickerTest do
     assert extract_rates(@daily) |> Map.get(:date) == ~D[2019-03-20]
   end
 
+  test "rates are based to EUR" do
+    assert extract_rates(@daily) |> Map.get(:base) == "EUR"
+  end
+
   test "extracts rates for all currencies" do
     assert extract_rates(@daily) |> Map.get(:rates) == [
              {"USD", 1.1354},
@@ -67,6 +71,7 @@ defmodule TickerTest do
   test "extracts rates for all dail in historical feed" do
     assert extract_rates(@historical) == [
              %{
+               base: "EUR",
                date: ~D[2019-03-20],
                rates: [
                  {"USD", 1.1354},
@@ -74,6 +79,7 @@ defmodule TickerTest do
                ]
              },
              %{
+               base: "EUR",
                date: ~D[2019-03-21],
                rates: [
                  {"USD", 1.787},

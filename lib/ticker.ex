@@ -51,6 +51,7 @@ defmodule Ticker do
     {:ok, date} = data["time"] |> Date.from_iso8601()
 
     %{
+      base: "EUR",
       date: date,
       rates:
         Enum.map(data["Cube"], fn r -> {r["currency"], r["rate"] |> Float.parse() |> elem(0)} end)
