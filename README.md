@@ -1,5 +1,7 @@
 # EBC Ticker
 
+[![Build Status](https://travis-ci.com/laszpio/ecb_ticker.svg?branch=master)](https://travis-ci.com/laszpio/ecb_ticker)
+
 Provides current and historical (90 days) foreign exchange rates published by the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html).
 
 ## Daily
