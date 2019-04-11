@@ -52,7 +52,7 @@ Sample result:
 }
 ```
 
-## Historic (last 90 days)
+## Historical (last 90 days)
 
 ```elixir
 Ticker.historical()
