@@ -1,7 +1,14 @@
 language: elixir
-sudo: false
+
 elixir:
   - 1.8.1
   - 1.8.0
+otp_release:
+  - 21.0
 
+sudo: false
 
+cache:
+  directories:
+    - _build
+    - deps
