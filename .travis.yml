@@ -7,3 +7,8 @@ otp_release:
   - 21.0
 
 sudo: false
+
+cache:
+  directories:
+    - _build
+    - deps
