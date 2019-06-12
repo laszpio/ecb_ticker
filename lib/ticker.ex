@@ -54,7 +54,9 @@ defmodule Ticker do
       base: "EUR",
       date: date,
       rates:
-        Enum.map(data["Cube"], fn r -> {r["currency"], r["rate"] |> Float.parse() |> elem(0)} end)
+        Enum.map(data["Cube"], fn r ->
+          {r["currency"], r["rate"] |> Float.parse() |> elem(0)}
+        end)
     }
   end
 
@@ -67,7 +69,8 @@ defmodule Ticker do
 
   Data feeds:
     - :daily returns url to endpoint with latest published exchange rates
-    - :historical returns url to endpoints with exchange rates published within last 90 days
+    - :historical returns url to endpoints with exchange rates published within
+      last 90 days
   """
   def endpoint_url(feed) do
     base_url = "https://www.ecb.europa.eu/stats/eurofxref"
