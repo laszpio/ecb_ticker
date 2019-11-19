@@ -9,7 +9,15 @@ otp_release:
 
 sudo: false
 
+env:
+  global:
+    - MIX_ENV=test
+
 cache:
   directories:
     - _build
     - deps
+
+script:
+  - mix credo --strict
+  - mix test
