@@ -7,8 +7,6 @@ elixir:
 otp_release:
   - 21.0
 
-sudo: false
-
 env:
   global:
     - MIX_ENV=test
