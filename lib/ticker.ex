@@ -15,15 +15,14 @@ defmodule Ticker do
   def historical, do: query(:historical)
 
   defp query(scope) do
-    case HTTPotion.get(endpoint_url(scope)) do
-      %HTTPotion.Response{body: body, status_code: 200} ->
-        case body |> parse_response_body do
+    case Tesla.get(endpoint_url(scope)) do
+      {:ok, response} ->
+        case parse_response_body(response.body) do
           {:ok, response} -> process_response_data(response)
-          {:error, message} -> message
         end
 
-      %HTTPotion.ErrorResponse{message: message} ->
-        {:error, message}
+      {:error, error} ->
+        {:error, error}
     end
   end
 
