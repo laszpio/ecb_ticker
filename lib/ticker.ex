@@ -37,30 +37,35 @@ defmodule Ticker do
   end
 
   defp process_response_data(data) do
-    data
-    |> Map.get("Cube")
-    |> Map.get("Cube")
-    |> extract_rates()
+    data |> get_in(["Cube", "Cube"]) |> extract_rates()
   end
 
   @doc """
   Extracts rates from data container
   """
   def extract_rates(data) when is_map(data) do
-    {:ok, date} = data["-time"] |> Date.from_iso8601()
-
     %{
       base: "EUR",
-      date: date,
-      rates:
-        Enum.map(data["#content"]["Cube"], fn r ->
-          {r["-currency"], r["-rate"] |> Float.parse() |> elem(0)}
-        end)
+      date: rates_date(data),
+      rates: Enum.map(data |> get_in(["#content", "Cube"]), &currency_rate(&1))
     }
   end
 
   def extract_rates(data) when is_list(data) do
     data |> Enum.map(&extract_rates(&1))
+  end
+
+  defp rates_date(data) do
+    {:ok, date} = data |> Map.fetch!("-time") |> Date.from_iso8601()
+    date
+  end
+
+  defp currency_rate(data) do
+    {:ok, currency} = Map.fetch(data, "-currency")
+    {:ok, rate} = Map.fetch(data, "-rate")
+    {rate, ""} = Float.parse(rate)
+
+    {currency, rate}
   end
 
   @doc """
