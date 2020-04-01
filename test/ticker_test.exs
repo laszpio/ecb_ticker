@@ -29,11 +29,13 @@ defmodule TickerTest do
   end
 
   @daily %{
-    "time" => "2019-03-20",
-    "Cube" => [
-      %{"currency" => "USD", "rate" => "1.1354"},
-      %{"currency" => "IDR", "rate" => "16082"}
-    ]
+    "-time" => "2019-03-20",
+    "#content" => %{
+      "Cube" => [
+        %{"-currency" => "USD", "-rate" => "1.1354"},
+        %{"-currency" => "IDR", "-rate" => "16082"}
+      ]
+    }
   }
 
   test "extracts rates' date" do
@@ -53,18 +55,22 @@ defmodule TickerTest do
 
   @historical [
     %{
-      "time" => "2019-03-20",
-      "Cube" => [
-        %{"currency" => "USD", "rate" => "1.1354"},
-        %{"currency" => "IDR", "rate" => "16082"}
-      ]
+      "-time" => "2019-03-20",
+      "#content" => %{
+        "Cube" => [
+          %{"-currency" => "USD", "-rate" => "1.1354"},
+          %{"-currency" => "IDR", "-rate" => "16082"}
+        ]
+      }
     },
     %{
-      "time" => "2019-03-21",
-      "Cube" => [
-        %{"currency" => "USD", "rate" => "1.787"},
-        %{"currency" => "IDR", "rate" => "16082.77"}
-      ]
+      "-time" => "2019-03-21",
+      "#content" => %{
+        "Cube" => [
+          %{"-currency" => "USD", "-rate" => "1.787"},
+          %{"-currency" => "IDR", "-rate" => "16082.77"}
+        ]
+      }
     }
   ]
 

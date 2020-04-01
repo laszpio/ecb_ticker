@@ -47,14 +47,14 @@ defmodule Ticker do
   Extracts rates from data container
   """
   def extract_rates(data) when is_map(data) do
-    {:ok, date} = data["time"] |> Date.from_iso8601()
+    {:ok, date} = data["-time"] |> Date.from_iso8601()
 
     %{
       base: "EUR",
       date: date,
       rates:
-        Enum.map(data["Cube"], fn r ->
-          {r["currency"], r["rate"] |> Float.parse() |> elem(0)}
+        Enum.map(data["#content"]["Cube"], fn r ->
+          {r["-currency"], r["-rate"] |> Float.parse() |> elem(0)}
         end)
     }
   end
