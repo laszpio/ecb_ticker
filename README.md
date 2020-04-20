@@ -4,6 +4,11 @@
 
 Provides current and historical (90 days) foreign exchange rates published by the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html).
 
+The reference rates are usually updated around 16:00 CET on every working day,
+except on [TARGET](https://www.ecb.europa.eu/home/contacts/working-hours/html/index.en.html)
+closing days. They are based on a regular daily concertation procedure between
+central banks across Europe, which normally takes place at 14:15 CET.
+
 ## Daily
 
 ```elixir
