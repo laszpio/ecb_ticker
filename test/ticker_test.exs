@@ -110,7 +110,7 @@ defmodule TickerTest do
       result = daily()
 
       assert is_map(result)
-      assert result[:date] == ~D[2020-03-18]
+      assert result[:date] == ~D[2020-07-08]
 
       rates = result[:rates]
       assert is_list(rates)
@@ -124,7 +124,7 @@ defmodule TickerTest do
 
       usd = rates |> List.first()
       assert usd |> elem(0) == "USD"
-      assert usd |> elem(1) == 1.0934
+      assert usd |> elem(1) > 0
     end
   end
 
