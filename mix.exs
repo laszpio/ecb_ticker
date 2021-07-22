@@ -25,7 +25,7 @@ defmodule Ticker.MixProject do
       {:hackney, "~> 1.17.0"},
       {:jason, "~> 1.0"},
       {:elixir_xml_to_map, "~> 2.0"},
-      {:exvcr, "~> 0.12.0", only: :test},
+      {:exvcr, "~> 0.13.0", only: :test},
       {:earmark, "~> 1.2", only: :dev},
       {:ex_doc, "~> 0.19", only: :dev},
       {:credo, "~> 1.5.0", only: [:dev, :test], runtime: false}
