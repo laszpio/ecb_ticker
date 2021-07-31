@@ -110,7 +110,7 @@ defmodule TickerTest do
       result = daily()
 
       assert is_map(result)
-      assert result[:date] == ~D[2020-07-08]
+      assert result[:date] == ~D[2021-07-30]
 
       rates = result[:rates]
       assert is_list(rates)
@@ -133,7 +133,7 @@ defmodule TickerTest do
       result = historical()
 
       assert is_list(result)
-      assert length(result) == 61
+      assert length(result) == 65
 
       Enum.each(result, fn daily ->
         assert daily |> Map.has_key?(:date)
