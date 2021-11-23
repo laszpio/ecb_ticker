@@ -28,7 +28,7 @@ defmodule Ticker.MixProject do
       {:exvcr, "~> 0.13.0", only: :test},
       {:earmark, "~> 1.2", only: :dev},
       {:ex_doc, "~> 0.19", only: :dev},
-      {:credo, "~> 1.5.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6.1", only: [:dev, :test], runtime: false}
     ]
   end
 end
