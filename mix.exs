@@ -22,7 +22,7 @@ defmodule Ticker.MixProject do
   defp deps do
     [
       {:tesla, "~> 1.4.0"},
-      {:hackney, "~> 1.17.0"},
+      {:hackney, "~> 1.18.0"},
       {:jason, "~> 1.0"},
       {:elixir_xml_to_map, "~> 2.0"},
       {:exvcr, "~> 0.13.0", only: :test},
