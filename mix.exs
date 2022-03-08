@@ -24,7 +24,7 @@ defmodule Ticker.MixProject do
       {:tesla, "~> 1.4.0"},
       {:hackney, "~> 1.18.1"},
       {:jason, "~> 1.0"},
-      {:elixir_xml_to_map, "~> 2.0"},
+      {:elixir_xml_to_map, "~> 3.0"},
       {:exvcr, "~> 0.13.0", only: :test},
       {:earmark, "~> 1.2", only: :dev},
       {:ex_doc, "~> 0.19", only: :dev},
