@@ -31,7 +31,7 @@ defmodule Ticker do
   """
   def parse_response_body(response) do
     case XmlToMap.naive_map(response) do
-      %{"{http://www.gesmes.org/xml/2002-08-01}Envelope" => data} -> {:ok, data}
+      %{"gesmes:Envelope" => data} -> {:ok, data}
       {:error, message} -> {:error, message}
     end
   end
