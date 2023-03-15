@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      ImageOS: ubuntu18
+      ImageOS: ubuntu20
 
     steps:
     - uses: actions/checkout@v3
