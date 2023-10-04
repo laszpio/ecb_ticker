@@ -1,32 +1,32 @@
 [
   {
     "request": {
+      "options": [],
       "body": "",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
       "headers": [],
       "method": "get",
-      "options": [],
-      "request_body": "",
-      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+      "request_body": ""
     },
     "response": {
       "binary": false,
-      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gesmes:Envelope xmlns:gesmes=\"http://www.gesmes.org/xml/2002-08-01\" xmlns=\"http://www.ecb.int/vocabulary/2002-08-01/eurofxref\">\n\t<gesmes:subject>Reference rates</gesmes:subject>\n\t<gesmes:Sender>\n\t\t<gesmes:name>European Central Bank</gesmes:name>\n\t</gesmes:Sender>\n\t<Cube>\n\t\t<Cube time='2023-05-04'>\n\t\t\t<Cube currency='USD' rate='1.1074'/>\n\t\t\t<Cube currency='JPY' rate='148.92'/>\n\t\t\t<Cube currency='BGN' rate='1.9558'/>\n\t\t\t<Cube currency='CZK' rate='23.460'/>\n\t\t\t<Cube currency='DKK' rate='7.4503'/>\n\t\t\t<Cube currency='GBP' rate='0.88015'/>\n\t\t\t<Cube currency='HUF' rate='373.94'/>\n\t\t\t<Cube currency='PLN' rate='4.5905'/>\n\t\t\t<Cube currency='RON' rate='4.9295'/>\n\t\t\t<Cube currency='SEK' rate='11.3410'/>\n\t\t\t<Cube currency='CHF' rate='0.9802'/>\n\t\t\t<Cube currency='ISK' rate='150.10'/>\n\t\t\t<Cube currency='NOK' rate='11.8282'/>\n\t\t\t<Cube currency='TRY' rate='21.5825'/>\n\t\t\t<Cube currency='AUD' rate='1.6585'/>\n\t\t\t<Cube currency='BRL' rate='5.5194'/>\n\t\t\t<Cube currency='CAD' rate='1.5072'/>\n\t\t\t<Cube currency='CNY' rate='7.6538'/>\n\t\t\t<Cube currency='HKD' rate='8.6909'/>\n\t\t\t<Cube currency='IDR' rate='16263.59'/>\n\t\t\t<Cube currency='ILS' rate='4.0268'/>\n\t\t\t<Cube currency='INR' rate='90.5495'/>\n\t\t\t<Cube currency='KRW' rate='1465.69'/>\n\t\t\t<Cube currency='MXN' rate='19.8208'/>\n\t\t\t<Cube currency='MYR' rate='4.9313'/>\n\t\t\t<Cube currency='NZD' rate='1.7668'/>\n\t\t\t<Cube currency='PHP' rate='61.286'/>\n\t\t\t<Cube currency='SGD' rate='1.4695'/>\n\t\t\t<Cube currency='THB' rate='37.430'/>\n\t\t\t<Cube currency='ZAR' rate='20.1357'/>\n\t\t</Cube>\n\t</Cube>\n</gesmes:Envelope>",
+      "type": "ok",
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gesmes:Envelope xmlns:gesmes=\"http://www.gesmes.org/xml/2002-08-01\" xmlns=\"http://www.ecb.int/vocabulary/2002-08-01/eurofxref\">\n\t<gesmes:subject>Reference rates</gesmes:subject>\n\t<gesmes:Sender>\n\t\t<gesmes:name>European Central Bank</gesmes:name>\n\t</gesmes:Sender>\n\t<Cube>\n\t\t<Cube time='2023-10-04'>\n\t\t\t<Cube currency='USD' rate='1.0497'/>\n\t\t\t<Cube currency='JPY' rate='156.48'/>\n\t\t\t<Cube currency='BGN' rate='1.9558'/>\n\t\t\t<Cube currency='CZK' rate='24.428'/>\n\t\t\t<Cube currency='DKK' rate='7.4589'/>\n\t\t\t<Cube currency='GBP' rate='0.86588'/>\n\t\t\t<Cube currency='HUF' rate='387.32'/>\n\t\t\t<Cube currency='PLN' rate='4.6278'/>\n\t\t\t<Cube currency='RON' rate='4.9753'/>\n\t\t\t<Cube currency='SEK' rate='11.5855'/>\n\t\t\t<Cube currency='CHF' rate='0.9634'/>\n\t\t\t<Cube currency='ISK' rate='145.70'/>\n\t\t\t<Cube currency='NOK' rate='11.5135'/>\n\t\t\t<Cube currency='TRY' rate='28.9397'/>\n\t\t\t<Cube currency='AUD' rate='1.6615'/>\n\t\t\t<Cube currency='BRL' rate='5.3955'/>\n\t\t\t<Cube currency='CAD' rate='1.4391'/>\n\t\t\t<Cube currency='CNY' rate='7.6644'/>\n\t\t\t<Cube currency='HKD' rate='8.2191'/>\n\t\t\t<Cube currency='IDR' rate='16406.81'/>\n\t\t\t<Cube currency='ILS' rate='4.0542'/>\n\t\t\t<Cube currency='INR' rate='87.3975'/>\n\t\t\t<Cube currency='KRW' rate='1422.11'/>\n\t\t\t<Cube currency='MXN' rate='18.8501'/>\n\t\t\t<Cube currency='MYR' rate='4.9661'/>\n\t\t\t<Cube currency='NZD' rate='1.7792'/>\n\t\t\t<Cube currency='PHP' rate='59.507'/>\n\t\t\t<Cube currency='SGD' rate='1.4402'/>\n\t\t\t<Cube currency='THB' rate='38.839'/>\n\t\t\t<Cube currency='ZAR' rate='20.2420'/>\n\t\t</Cube>\n\t</Cube>\n</gesmes:Envelope>",
       "headers": {
         "Server": "myracloud",
-        "Date": "Thu, 04 May 2023 20:40:19 GMT",
+        "Date": "Wed, 04 Oct 2023 20:03:56 GMT",
         "Content-Type": "text/xml",
         "Transfer-Encoding": "chunked",
         "Connection": "keep-alive",
         "X-Frame-Options": "SAMEORIGIN",
         "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
-        "Last-Modified": "Thu, 04 May 2023 13:55:12 GMT",
+        "Last-Modified": "Wed, 04 Oct 2023 13:55:09 GMT",
         "X-XSS-Protection": "1; mode=block",
-        "Expires": "Thu, 04 May 2023 14:05:18 GMT",
+        "Expires": "Wed, 04 Oct 2023 14:05:16 GMT",
         "cache-control": "max-age=300",
         "X-CDN": "1"
       },
-      "status_code": 200,
-      "type": "ok"
+      "status_code": 200
     }
   }
 ]
