@@ -21,7 +21,7 @@ defmodule Ticker.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:tesla, "~> 1.8.0"},
+      {:tesla, "~> 1.9.0"},
       {:hackney, "~> 1.20.1"},
       {:jason, "~> 1.0"},
       {:elixir_xml_to_map, "~> 3.0"},
