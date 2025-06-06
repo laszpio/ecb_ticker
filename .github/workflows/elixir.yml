@@ -1,42 +1,40 @@
 name: Elixir CI
-
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "*" ]
   pull_request:
-    branches: [ "master" ]
-
+    branches: [ "*" ]
+  workflow_dispatch:
 permissions:
   contents: read
-
 jobs:
   build:
     name: Build and test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env:
       FORCE_COLOR: 1
       MIX_ENV: test
-    
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: '1.15.8'
+          elixir-version: '1.16'
           otp-version: '26'
-      - name: Restore dependencies cache
+      - name: Restore dependencies
         uses: actions/cache@v3
         with:
-          path: deps | _build
+          path: |
+            deps
+            _build
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: ${{ runner.os }}-mix-
       - name: Install dependencies
         run: mix deps.get
-      - name: Compile deps
+      - name: Compile dependencies
         run: mix deps.compile
       - name: Check unused dependencies
         run: mix deps.unlock --check-unused
-        if: ${{ matrix.lint }}
+        if: ${{ matrix.lint == true }}
       - name: Run tests
         run: mix test
