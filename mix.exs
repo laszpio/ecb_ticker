@@ -11,22 +11,20 @@ defmodule Ticker.MixProject do
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger, :hackney]
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       {:tesla, "~> 1.14.3"},
       {:hackney, "~> 1.24.1"},
       {:jason, "~> 1.0"},
       {:elixir_xml_to_map, "~> 3.0"},
-      {:exvcr, "~> 0.17.0", only: :test},
-      {:earmark, "~> 1.2", only: :dev},
+      {:exvcr, "~> 0.17.1", only: :test},
+      {:earmark, "~> 1.4", only: :dev},
       {:ex_doc, "~> 0.19", only: :dev},
       {:credo, "~> 1.7.0", only: [:dev, :test], runtime: false}
     ]
