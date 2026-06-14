@@ -158,6 +158,12 @@ defmodule TickerTest do
         assert {:error, _} = Ticker.daily()
       end
     end
+
+    test "returns error on network failure" do
+      use_cassette "daily_rates_network_error" do
+        assert {:error, _} = Ticker.daily()
+      end
+    end
   end
 
   describe "daily/0" do
