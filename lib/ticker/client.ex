@@ -22,12 +22,8 @@ defmodule Ticker.Client do
     - :historical returns URL for exchange rates published within last 90 days
   """
   @spec endpoint_url(atom()) :: String.t()
-  def endpoint_url(feed) do
-    case feed do
-      :historical -> @base_url <> "/eurofxref-hist-90d.xml"
-      _ -> @base_url <> "/eurofxref-daily.xml"
-    end
-  end
+  def endpoint_url(:daily), do: @base_url <> "/eurofxref-daily.xml"
+  def endpoint_url(:historical), do: @base_url <> "/eurofxref-hist-90d.xml"
 
   defp handle_response({:ok, %{body: body, status: status}}) when status in 200..299 do
     {:ok, body}
