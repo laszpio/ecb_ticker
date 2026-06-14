@@ -100,7 +100,11 @@ defmodule Ticker do
   defp query(scope) do
     with {:ok, body} <- Client.fetch(scope),
          {:ok, data} <- Parser.parse_xml(body) do
-      Parser.process_response_data(data)
+      try do
+        Parser.process_response_data(data)
+      rescue
+        e -> {:error, Exception.message(e)}
+      end
     else
       {:error, reason} -> {:error, reason}
     end
