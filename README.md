@@ -1,4 +1,4 @@
-# EBC Ticker
+# ECB Ticker
 
 [![Build Status](https://github.com/laszpio/ecb_ticker/actions/workflows/elixir-ci.yml/badge.svg)](https://github.com/laszpio/ecb_ticker/actions/workflows/elixir-ci.yml)
 
@@ -8,6 +8,32 @@ Provides current and historical (90 days) foreign exchange rates published by th
 > except on [TARGET](https://www.ecb.europa.eu/home/contacts/working-hours/html/index.en.html)
 > closing days. They are based on a regular daily concertation procedure between
 > central banks across Europe, which normally takes place at 14:15 CET.
+
+## Testing
+
+Run the test suite:
+
+```bash
+mix test
+```
+
+### VCR Cassettes
+
+HTTP interactions with the ECB API are recorded using [ExVCR](https://github.com/parroty/exvcr) and stored as JSON fixtures in `fixture/vcr_cassettes/`. Tests replay these recorded responses instead of making live network requests, keeping the suite fast and deterministic.
+
+| Cassette | Covers |
+|---|---|
+| `daily_rates.json` | `Ticker.daily/0` |
+| `historical_rates.json` | `Ticker.historical/0` |
+
+To re-record the cassettes against the live ECB API (e.g. after a schema change or to refresh stale data):
+
+```bash
+rm fixture/vcr_cassettes/*.json
+mix test
+```
+
+ExVCR will make real HTTP requests on the next run and save the responses as new cassettes. Commit the updated files afterwards.
 
 ## Daily
 
