@@ -137,7 +137,7 @@ defmodule TickerTest do
         result = Ticker.historical()
 
         assert is_list(result)
-        assert length(result) > 0
+        assert result != []
 
         first_day = List.first(result)
         assert is_map(first_day)
@@ -148,7 +148,7 @@ defmodule TickerTest do
         Enum.each(result, fn day ->
           assert %{base: "EUR", date: %Date{}, rates: rates} = day
           assert is_list(rates)
-          assert length(rates) > 0
+          assert rates != []
 
           # Validate first rate in each day
           {currency, rate} = List.first(rates)
