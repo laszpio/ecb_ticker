@@ -5,7 +5,7 @@ defmodule Ticker.MixProject do
     [
       app: :ticker,
       version: "0.1.0",
-      elixir: "~> 1.8",
+      elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -13,7 +13,7 @@ defmodule Ticker.MixProject do
 
   def application do
     [
-      extra_applications: [:logger, :hackney]
+      extra_applications: [:logger]
     ]
   end
 
@@ -24,9 +24,10 @@ defmodule Ticker.MixProject do
       {:jason, "~> 1.0"},
       {:elixir_xml_to_map, "~> 3.0"},
       {:exvcr, "~> 0.17.1", only: :test},
+      {:meck, "~> 1.2", only: :test, override: true},
       {:earmark, "~> 1.4", only: :dev},
       {:ex_doc, "~> 0.19", only: :dev},
-      {:credo, "~> 1.7.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 end

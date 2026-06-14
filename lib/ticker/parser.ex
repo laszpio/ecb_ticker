@@ -25,7 +25,7 @@ defmodule Ticker.Parser do
     %{
       base: @base_currency,
       date: rates_date(data),
-      rates: Enum.map(data |> get_in(["#content", "Cube"]), &currency_rate/1)
+      rates: data |> get_in(["#content", "Cube"]) |> List.wrap() |> Enum.map(&currency_rate/1)
     }
   end
 
@@ -46,7 +46,7 @@ defmodule Ticker.Parser do
     date
   rescue
     e in [KeyError, ArgumentError] ->
-      reraise "Failed to parse date: #{inspect(e.message)}", __STACKTRACE__
+      reraise "Failed to parse date: #{Exception.message(e)}", __STACKTRACE__
   end
 
   defp currency_rate(data) do
