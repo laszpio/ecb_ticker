@@ -36,9 +36,12 @@ defmodule Ticker.Parser do
   @doc """
   Processes the response data by extracting the Cube data and transforming it.
   """
-  @spec process_response_data(map()) :: Ticker.Types.rates_result() | [Ticker.Types.rates_result()]
+  @spec process_response_data(map()) :: Ticker.Types.rates_result() | [Ticker.Types.rates_result()] | Ticker.Types.error()
   def process_response_data(data) do
-    data |> get_in(["Cube", "Cube"]) |> extract_rates()
+    case get_in(data, ["Cube", "Cube"]) do
+      nil -> {:error, :no_data}
+      cube -> extract_rates(cube)
+    end
   end
 
   defp rates_date(data) do
