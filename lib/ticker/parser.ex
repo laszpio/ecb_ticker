@@ -10,15 +10,13 @@ defmodule Ticker.Parser do
   """
   @spec parse_xml(String.t()) :: {:ok, map()} | {:error, any()}
   def parse_xml(xml) do
-    try do
-      case XmlToMap.naive_map(xml) do
-        %{"gesmes:Envelope" => data} -> {:ok, data}
-        {:error, message} -> {:error, message}
-        _ -> {:error, :invalid_response_format}
-      end
-    catch
-      :throw, {:error, reason} -> {:error, reason}
+    case XmlToMap.naive_map(xml) do
+      %{"gesmes:Envelope" => data} -> {:ok, data}
+      {:error, message} -> {:error, message}
+      _ -> {:error, :invalid_response_format}
     end
+  catch
+    :throw, {:error, reason} -> {:error, reason}
   end
 
   @doc """
