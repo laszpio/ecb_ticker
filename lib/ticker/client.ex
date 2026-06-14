@@ -3,10 +3,6 @@ defmodule Ticker.Client do
   Handles HTTP communication with the European Central Bank API.
   """
 
-  use Tesla
-
-  plug Tesla.Middleware.Timeout, timeout: 15_000
-
   @base_url "https://www.ecb.europa.eu/stats/eurofxref"
 
   @doc """
@@ -14,8 +10,12 @@ defmodule Ticker.Client do
   """
   @spec fetch(atom()) :: {:ok, String.t()} | {:error, any()}
   def fetch(feed) do
-    get(endpoint_url(feed))
+    Tesla.get(client(), endpoint_url(feed))
     |> handle_response()
+  end
+
+  defp client do
+    Tesla.client([{Tesla.Middleware.Timeout, timeout: 15_000}])
   end
 
   @doc """
