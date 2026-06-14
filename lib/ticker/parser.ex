@@ -42,11 +42,13 @@ defmodule Ticker.Parser do
   end
 
   defp rates_date(data) do
-    {:ok, date} = data |> Map.fetch!("-time") |> Date.from_iso8601()
-    date
-  rescue
-    e in [KeyError, ArgumentError] ->
-      reraise "Failed to parse date: #{Exception.message(e)}", __STACKTRACE__
+    with {:ok, time_str} <- Map.fetch(data, "-time"),
+         {:ok, date} <- Date.from_iso8601(time_str) do
+      date
+    else
+      :error -> raise KeyError, "Missing -time key in date data"
+      {:error, reason} -> raise ArgumentError, "Invalid date string: #{inspect(reason)}"
+    end
   end
 
   defp currency_rate(data) do
