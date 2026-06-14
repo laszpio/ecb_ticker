@@ -9,15 +9,15 @@ defmodule Ticker do
   @doc """
   Provides daily exchange rates.
 
-  Returns a map with base currency, date, and list of currency rates.
+  Returns `{:ok, rates}` on success or `{:error, reason}` on failure.
 
   ## Example output format:
 
-      %{
+      {:ok, %{
         base: "EUR",
         date: ~D[2022-03-08],
         rates: [{"USD", 1.0892}, {"JPY", 126.03}, ...]
-      }
+      }}
   """
   @spec daily() :: Types.result()
   def daily, do: query(:daily)
@@ -25,15 +25,15 @@ defmodule Ticker do
   @doc """
   Provides historical 90 days exchange rates.
 
-  Returns a list of maps, each containing base currency, date, and rates for that date.
+  Returns `{:ok, rates}` on success or `{:error, reason}` on failure.
 
   ## Example output format:
 
-      [
+      {:ok, [
         %{base: "EUR", date: ~D[2022-03-08], rates: [{"USD", 1.0892}, {"JPY", 126.03}, ...]},
         %{base: "EUR", date: ~D[2022-03-07], rates: [{"USD", 1.0854}, {"JPY", 125.45}, ...]},
-        # ...
-      ]
+        ...
+      ]}
   """
   @spec historical() :: Types.result()
   def historical, do: query(:historical)
@@ -101,7 +101,10 @@ defmodule Ticker do
     with {:ok, body} <- Client.fetch(scope),
          {:ok, data} <- Parser.parse_xml(body) do
       try do
-        Parser.process_response_data(data)
+        case Parser.process_response_data(data) do
+          {:error, _} = error -> error
+          result -> {:ok, result}
+        end
       rescue
         e -> {:error, Exception.message(e)}
       end

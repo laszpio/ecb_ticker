@@ -169,19 +169,17 @@ defmodule TickerTest do
   describe "daily/0" do
     test "returns daily exchange rates" do
       use_cassette "daily_rates" do
-        result = Ticker.daily()
+        {:ok, result} = Ticker.daily()
 
         assert is_map(result)
         assert result.base == "EUR"
         assert is_list(result.rates)
 
-        # At least check that some common currencies are present
         currencies = Enum.map(result.rates, fn {currency, _rate} -> currency end)
         assert "USD" in currencies
         assert "JPY" in currencies
         assert "GBP" in currencies
 
-        # Validate rate format
         {_currency, rate} = List.first(result.rates)
         assert is_float(rate)
       end
@@ -191,7 +189,7 @@ defmodule TickerTest do
   describe "historical/0" do
     test "returns historical exchange rates" do
       use_cassette "historical_rates" do
-        result = Ticker.historical()
+        {:ok, result} = Ticker.historical()
 
         assert is_list(result)
         assert result != []
@@ -201,13 +199,11 @@ defmodule TickerTest do
         assert first_day.base == "EUR"
         assert is_list(first_day.rates)
 
-        # Validate rate format across multiple days
         Enum.each(result, fn day ->
           assert %{base: "EUR", date: %Date{}, rates: rates} = day
           assert is_list(rates)
           assert rates != []
 
-          # Validate first rate in each day
           {currency, rate} = List.first(rates)
           assert is_binary(currency)
           assert is_float(rate)

@@ -44,7 +44,7 @@ Ticker.daily()
 Sample result:
 
 ```elixir
-%{
+{:ok, %{
   base: "EUR",
   date: ~D[2022-03-08],
   rates: [
@@ -80,7 +80,7 @@ Sample result:
     {"THB", 36.156},
     {"ZAR", 16.7051}
   ]
-}
+}}
 ```
 
 ## Historical (last 90 days)
@@ -92,7 +92,7 @@ Ticker.historical()
 Sample result:
 
 ```elixir
-[
+{:ok, [
   %{
     date: ~D[2019-04-01],
     rates: [
@@ -113,5 +113,5 @@ Sample result:
   },
   %{...},
   ...
-]
+]}
 ```

@@ -13,5 +13,5 @@ defmodule Ticker.Types do
   @type error :: {:error, any()}
 
   @typedoc "Function result type"
-  @type result :: rates_result() | [rates_result()] | error()
+  @type result :: {:ok, rates_result()} | {:ok, [rates_result()]} | error()
 end
