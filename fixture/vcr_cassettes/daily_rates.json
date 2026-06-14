@@ -11,21 +11,19 @@
     "response": {
       "binary": false,
       "type": "ok",
-      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gesmes:Envelope xmlns:gesmes=\"http://www.gesmes.org/xml/2002-08-01\" xmlns=\"http://www.ecb.int/vocabulary/2002-08-01/eurofxref\">\n\t<gesmes:subject>Reference rates</gesmes:subject>\n\t<gesmes:Sender>\n\t\t<gesmes:name>European Central Bank</gesmes:name>\n\t</gesmes:Sender>\n\t<Cube>\n\t\t<Cube time='2026-01-30'>\n\t\t\t<Cube currency='USD' rate='1.1919'/>\n\t\t\t<Cube currency='JPY' rate='183.59'/>\n\t\t\t<Cube currency='CZK' rate='24.325'/>\n\t\t\t<Cube currency='DKK' rate='7.4674'/>\n\t\t\t<Cube currency='GBP' rate='0.86620'/>\n\t\t\t<Cube currency='HUF' rate='380.70'/>\n\t\t\t<Cube currency='PLN' rate='4.2073'/>\n\t\t\t<Cube currency='RON' rate='5.0964'/>\n\t\t\t<Cube currency='SEK' rate='10.5205'/>\n\t\t\t<Cube currency='CHF' rate='0.9157'/>\n\t\t\t<Cube currency='ISK' rate='145.20'/>\n\t\t\t<Cube currency='NOK' rate='11.3885'/>\n\t\t\t<Cube currency='TRY' rate='51.8324'/>\n\t\t\t<Cube currency='AUD' rate='1.7001'/>\n\t\t\t<Cube currency='BRL' rate='6.2233'/>\n\t\t\t<Cube currency='CAD' rate='1.6120'/>\n\t\t\t<Cube currency='CNY' rate='8.2834'/>\n\t\t\t<Cube currency='HKD' rate='9.3067'/>\n\t\t\t<Cube currency='IDR' rate='20010.00'/>\n\t\t\t<Cube currency='ILS' rate='3.6799'/>\n\t\t\t<Cube currency='INR' rate='109.5825'/>\n\t\t\t<Cube currency='KRW' rate='1719.47'/>\n\t\t\t<Cube currency='MXN' rate='20.5979'/>\n\t\t\t<Cube currency='MYR' rate='4.7044'/>\n\t\t\t<Cube currency='NZD' rate='1.9660'/>\n\t\t\t<Cube currency='PHP' rate='70.211'/>\n\t\t\t<Cube currency='SGD' rate='1.5111'/>\n\t\t\t<Cube currency='THB' rate='37.455'/>\n\t\t\t<Cube currency='ZAR' rate='18.9906'/>\n\t\t</Cube>\n\t</Cube>\n</gesmes:Envelope>",
+      "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<gesmes:Envelope xmlns:gesmes=\"http://www.gesmes.org/xml/2002-08-01\" xmlns=\"http://www.ecb.int/vocabulary/2002-08-01/eurofxref\">\n\t<gesmes:subject>Reference rates</gesmes:subject>\n\t<gesmes:Sender>\n\t\t<gesmes:name>European Central Bank</gesmes:name>\n\t</gesmes:Sender>\n\t<Cube>\n\t\t<Cube time='2026-06-12'>\n\t\t\t<Cube currency='USD' rate='1.1567'/>\n\t\t\t<Cube currency='JPY' rate='185.30'/>\n\t\t\t<Cube currency='CZK' rate='24.171'/>\n\t\t\t<Cube currency='DKK' rate='7.4744'/>\n\t\t\t<Cube currency='GBP' rate='0.86305'/>\n\t\t\t<Cube currency='HUF' rate='352.88'/>\n\t\t\t<Cube currency='PLN' rate='4.2480'/>\n\t\t\t<Cube currency='RON' rate='5.2358'/>\n\t\t\t<Cube currency='SEK' rate='10.9280'/>\n\t\t\t<Cube currency='CHF' rate='0.9217'/>\n\t\t\t<Cube currency='ISK' rate='144.20'/>\n\t\t\t<Cube currency='NOK' rate='11.0255'/>\n\t\t\t<Cube currency='TRY' rate='53.5145'/>\n\t\t\t<Cube currency='AUD' rate='1.6442'/>\n\t\t\t<Cube currency='BRL' rate='5.9076'/>\n\t\t\t<Cube currency='CAD' rate='1.6180'/>\n\t\t\t<Cube currency='CNY' rate='7.8220'/>\n\t\t\t<Cube currency='HKD' rate='9.0633'/>\n\t\t\t<Cube currency='IDR' rate='20574.74'/>\n\t\t\t<Cube currency='ILS' rate='3.3784'/>\n\t\t\t<Cube currency='INR' rate='110.0195'/>\n\t\t\t<Cube currency='KRW' rate='1758.43'/>\n\t\t\t<Cube currency='MXN' rate='19.9234'/>\n\t\t\t<Cube currency='MYR' rate='4.6933'/>\n\t\t\t<Cube currency='NZD' rate='1.9860'/>\n\t\t\t<Cube currency='PHP' rate='70.315'/>\n\t\t\t<Cube currency='SGD' rate='1.4854'/>\n\t\t\t<Cube currency='THB' rate='37.876'/>\n\t\t\t<Cube currency='ZAR' rate='18.8571'/>\n\t\t</Cube>\n\t</Cube>\n</gesmes:Envelope>",
       "headers": {
-        "Server": "myracloud",
-        "Date": "Sun, 01 Feb 2026 18:58:03 GMT",
-        "Content-Type": "text/xml",
-        "Transfer-Encoding": "chunked",
-        "Connection": "keep-alive",
-        "X-Frame-Options": "SAMEORIGIN",
-        "Strict-Transport-Security": "max-age=63072000; includeSubDomains",
-        "Last-Modified": "Fri, 30 Jan 2026 14:56:32 GMT",
-        "X-XSS-Protection": "1; mode=block",
-        "Content-Disposition": "attachment;",
-        "Expires": "Fri, 30 Jan 2026 15:06:58 GMT",
+        "server": "myracloud",
+        "date": "Sun, 14 Jun 2026 10:31:39 GMT",
+        "content-type": "text/xml",
+        "x-frame-options": "SAMEORIGIN",
+        "strict-transport-security": "max-age=63072000; includeSubDomains",
+        "last-modified": "Fri, 12 Jun 2026 13:56:10 GMT",
+        "x-xss-protection": "1; mode=block",
+        "content-disposition": "attachment;",
+        "expires": "Sat, 13 Jun 2026 01:25:43 GMT",
         "cache-control": "max-age=300",
-        "X-CDN": "1"
+        "x-cdn": "1"
       },
       "status_code": 200
     }
