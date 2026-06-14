@@ -109,6 +109,57 @@ defmodule TickerTest do
     end
   end
 
+  describe "parse_response_body/1 error cases" do
+    test "returns error for malformed XML" do
+      assert {:error, _} = Ticker.parse_response_body("not xml at all")
+    end
+
+    test "returns error for XML with unexpected root element" do
+      xml = """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <root><data/></root>
+      """
+
+      assert {:error, :invalid_response_format} = Ticker.parse_response_body(xml)
+    end
+  end
+
+  describe "extract_rates/1 error cases" do
+    test "raises on missing -time field" do
+      data = %{"#content" => %{"Cube" => [%{"-currency" => "USD", "-rate" => "1.09"}]}}
+      assert_raise KeyError, fn -> Ticker.extract_rates(data) end
+    end
+
+    test "raises on invalid date string" do
+      data = %{"-time" => "not-a-date", "#content" => %{"Cube" => []}}
+      assert_raise ArgumentError, fn -> Ticker.extract_rates(data) end
+    end
+
+    test "raises on missing -currency field" do
+      data = %{"-time" => "2022-03-08", "#content" => %{"Cube" => [%{"-rate" => "1.09"}]}}
+      assert_raise KeyError, fn -> Ticker.extract_rates(data) end
+    end
+
+    test "raises on non-numeric rate" do
+      data = %{"-time" => "2022-03-08", "#content" => %{"Cube" => [%{"-currency" => "USD", "-rate" => "N/A"}]}}
+      assert_raise ArgumentError, fn -> Ticker.extract_rates(data) end
+    end
+  end
+
+  describe "Parser.process_response_data/1 error cases" do
+    test "returns error when Cube structure is absent" do
+      assert {:error, :no_data} = Ticker.Parser.process_response_data(%{"Cube" => %{}})
+    end
+  end
+
+  describe "daily/0 error cases" do
+    test "returns error on HTTP 500" do
+      use_cassette "daily_rates_500" do
+        assert {:error, _} = Ticker.daily()
+      end
+    end
+  end
+
   describe "daily/0" do
     test "returns daily exchange rates" do
       use_cassette "daily_rates" do

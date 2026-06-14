@@ -10,10 +10,14 @@ defmodule Ticker.Parser do
   """
   @spec parse_xml(String.t()) :: {:ok, map()} | {:error, any()}
   def parse_xml(xml) do
-    case XmlToMap.naive_map(xml) do
-      %{"gesmes:Envelope" => data} -> {:ok, data}
-      {:error, message} -> {:error, message}
-      _ -> {:error, :invalid_response_format}
+    try do
+      case XmlToMap.naive_map(xml) do
+        %{"gesmes:Envelope" => data} -> {:ok, data}
+        {:error, message} -> {:error, message}
+        _ -> {:error, :invalid_response_format}
+      end
+    catch
+      :throw, {:error, reason} -> {:error, reason}
     end
   end
 
@@ -56,14 +60,13 @@ defmodule Ticker.Parser do
 
   defp currency_rate(data) do
     with {:ok, currency} <- Map.fetch(data, "-currency"),
-         {:ok, rate_str} <- Map.fetch(data, "-rate"),
-         {rate, _} <- Float.parse(rate_str) do
-      {currency, rate}
+         {:ok, rate_str} <- Map.fetch(data, "-rate") do
+      case Float.parse(rate_str) do
+        {rate, _} -> {currency, rate}
+        :error -> raise ArgumentError, "Invalid rate format in #{inspect(data)}"
+      end
     else
-      :error ->
-        raise KeyError, "Required currency data missing in #{inspect(data)}"
-      _ ->
-        raise ArgumentError, "Invalid rate format in #{inspect(data)}"
+      :error -> raise KeyError, "Required currency data missing in #{inspect(data)}"
     end
   end
 end

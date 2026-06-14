@@ -1,0 +1,19 @@
+[
+  {
+    "request": {
+      "options": [],
+      "body": "",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+      "headers": [],
+      "method": "get",
+      "request_body": ""
+    },
+    "response": {
+      "binary": false,
+      "type": "ok",
+      "body": "Internal Server Error",
+      "headers": {},
+      "status_code": 500
+    }
+  }
+]
