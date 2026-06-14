@@ -40,4 +40,8 @@ defmodule Ticker.Client do
   defp handle_response({:error, reason}) do
     {:error, reason}
   end
+
+  defp handle_response(response) do
+    {:error, {:unexpected_response, response}}
+  end
 end
