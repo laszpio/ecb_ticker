@@ -21,19 +21,23 @@ mix test
 
 HTTP interactions with the ECB API are recorded using [ExVCR](https://github.com/parroty/exvcr) and stored as JSON fixtures in `fixture/vcr_cassettes/`. Tests replay these recorded responses instead of making live network requests, keeping the suite fast and deterministic.
 
-| Cassette | Covers |
-|---|---|
-| `daily_rates.json` | `Ticker.daily/0` |
-| `historical_rates.json` | `Ticker.historical/0` |
+| Cassette | Covers | Source |
+|---|---|---|
+| `daily_rates.json` | `Ticker.daily/0` happy path | Recorded from live ECB API |
+| `historical_rates.json` | `Ticker.historical/0` happy path | Recorded from live ECB API |
+| `daily_rates_500.json` | `Ticker.daily/0` on HTTP 500 | Hand-crafted — do not delete |
+| `daily_rates_network_error.json` | `Ticker.daily/0` on network failure | Hand-crafted — do not delete |
 
-To re-record the cassettes against the live ECB API (e.g. after a schema change or to refresh stale data):
+To re-record the **live** cassettes against the ECB API (e.g. after a schema change or to refresh stale data), delete only the two recorded files:
 
 ```bash
-rm fixture/vcr_cassettes/*.json
+rm fixture/vcr_cassettes/daily_rates.json fixture/vcr_cassettes/historical_rates.json
 mix test
 ```
 
 ExVCR will make real HTTP requests on the next run and save the responses as new cassettes. Commit the updated files afterwards.
+
+> **Do not delete** `daily_rates_500.json` or `daily_rates_network_error.json` — these are hand-crafted error fixtures that simulate responses the live ECB API will never return. They cannot be re-recorded.
 
 ## Daily
 
