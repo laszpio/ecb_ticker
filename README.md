@@ -28,16 +28,16 @@ HTTP interactions with the ECB API are recorded using [ExVCR](https://github.com
 | `daily_rates_500.json` | `Ticker.daily/0` on HTTP 500 | Hand-crafted — do not delete |
 | `daily_rates_network_error.json` | `Ticker.daily/0` on network failure | Hand-crafted — do not delete |
 
-To re-record the **live** cassettes against the ECB API (e.g. after a schema change or to refresh stale data), delete only the two recorded files:
+To re-record the **live** cassettes against the ECB API (e.g. after a schema change or to refresh stale data):
 
 ```bash
-rm fixture/vcr_cassettes/daily_rates.json fixture/vcr_cassettes/historical_rates.json
+mix vcr.reset
 mix test
 ```
 
-ExVCR will make real HTTP requests on the next run and save the responses as new cassettes. Commit the updated files afterwards.
+`mix vcr.reset` deletes only the two recorded cassettes. ExVCR makes real HTTP requests on the next test run and saves fresh responses. Commit the updated files afterwards.
 
-> **Do not delete** `daily_rates_500.json` or `daily_rates_network_error.json` — these are hand-crafted error fixtures that simulate responses the live ECB API will never return. They cannot be re-recorded.
+> **Do not manually delete** `daily_rates_500.json` or `daily_rates_network_error.json` — these are hand-crafted error fixtures that simulate responses the live ECB API will never return. They cannot be re-recorded. `mix vcr.reset` intentionally leaves them intact.
 
 ## Daily
 
