@@ -24,7 +24,6 @@ defmodule Ticker.MixProject do
       {:elixir_xml_to_map, "~> 3.0"},
       {:exvcr, "~> 0.17.1", only: :test},
       {:meck, "~> 1.2", only: :test},
-      {:earmark, "~> 1.4", only: :dev},
       {:ex_doc, "~> 0.19", only: :dev},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
