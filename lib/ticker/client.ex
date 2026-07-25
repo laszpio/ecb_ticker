@@ -5,17 +5,15 @@ defmodule Ticker.Client do
 
   @base_url "https://www.ecb.europa.eu/stats/eurofxref"
 
+  @client Tesla.client([{Tesla.Middleware.Timeout, timeout: 15_000}])
+
   @doc """
   Fetches data from the ECB API based on the feed type.
   """
   @spec fetch(atom()) :: {:ok, String.t()} | {:error, any()}
   def fetch(feed) do
-    Tesla.get(client(), endpoint_url(feed))
+    Tesla.get(@client, endpoint_url(feed))
     |> handle_response()
-  end
-
-  defp client do
-    Tesla.client([{Tesla.Middleware.Timeout, timeout: 15_000}])
   end
 
   @doc """
