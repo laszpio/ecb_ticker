@@ -29,7 +29,8 @@ defmodule Ticker.Client do
   def endpoint_url(:daily), do: @base_url <> "/eurofxref-daily.xml"
   def endpoint_url(:historical), do: @base_url <> "/eurofxref-hist-90d.xml"
 
-  defp handle_response({:ok, %{body: body, status: status}}) when status in 200..299 do
+  defp handle_response({:ok, %{body: body, status: status}})
+       when status in 200..299 do
     {:ok, body}
   end
 

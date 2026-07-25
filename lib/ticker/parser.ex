@@ -22,12 +22,17 @@ defmodule Ticker.Parser do
   @doc """
   Extracts exchange rates from the parsed data structure.
   """
-  @spec extract_rates(map() | list()) :: Ticker.Types.rates_result() | [Ticker.Types.rates_result()]
+  @spec extract_rates(map() | list()) ::
+          Ticker.Types.rates_result() | [Ticker.Types.rates_result()]
   def extract_rates(data) when is_map(data) do
     %{
       base: @base_currency,
       date: rates_date(data),
-      rates: data |> get_in(["#content", "Cube"]) |> List.wrap() |> Enum.map(&currency_rate/1)
+      rates:
+        data
+        |> get_in(["#content", "Cube"])
+        |> List.wrap()
+        |> Enum.map(&currency_rate/1)
     }
   end
 
@@ -38,7 +43,10 @@ defmodule Ticker.Parser do
   @doc """
   Processes the response data by extracting the Cube data and transforming it.
   """
-  @spec process_response_data(map()) :: Ticker.Types.rates_result() | [Ticker.Types.rates_result()] | Ticker.Types.error()
+  @spec process_response_data(map()) ::
+          Ticker.Types.rates_result()
+          | [Ticker.Types.rates_result()]
+          | Ticker.Types.error()
   def process_response_data(data) do
     case get_in(data, ["Cube", "Cube"]) do
       nil -> {:error, :no_data}
@@ -51,8 +59,11 @@ defmodule Ticker.Parser do
          {:ok, date} <- Date.from_iso8601(time_str) do
       date
     else
-      :error -> raise KeyError, "Missing -time key in date data"
-      {:error, reason} -> raise ArgumentError, "Invalid date string: #{inspect(reason)}"
+      :error ->
+        raise KeyError, "Missing -time key in date data"
+
+      {:error, reason} ->
+        raise ArgumentError, "Invalid date string: #{inspect(reason)}"
     end
   end
 
@@ -64,7 +75,8 @@ defmodule Ticker.Parser do
         :error -> raise ArgumentError, "Invalid rate format in #{inspect(data)}"
       end
     else
-      :error -> raise KeyError, "Required currency data missing in #{inspect(data)}"
+      :error ->
+        raise KeyError, "Required currency data missing in #{inspect(data)}"
     end
   end
 end

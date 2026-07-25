@@ -77,7 +77,8 @@ defmodule Ticker do
       iex> List.first(result.rates)
       {"USD", 1.0892}
   """
-  @spec extract_rates(map() | list()) :: Types.rates_result() | [Types.rates_result()]
+  @spec extract_rates(map() | list()) ::
+          Types.rates_result() | [Types.rates_result()]
   def extract_rates(data), do: Parser.extract_rates(data)
 
   @doc """
@@ -108,8 +109,6 @@ defmodule Ticker do
       rescue
         e -> {:error, Exception.message(e)}
       end
-    else
-      {:error, reason} -> {:error, reason}
     end
   end
 end

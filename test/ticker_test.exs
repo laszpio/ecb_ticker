@@ -18,12 +18,16 @@ defmodule TickerTest do
   describe "endpoint_url/1" do
     test "returns correct URL for daily rates" do
       url = Ticker.endpoint_url(:daily)
-      assert url == "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+
+      assert url ==
+               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
     end
 
     test "returns correct URL for historical rates" do
       url = Ticker.endpoint_url(:historical)
-      assert url == "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+
+      assert url ==
+               "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
     end
   end
 
@@ -120,13 +124,17 @@ defmodule TickerTest do
       <root><data/></root>
       """
 
-      assert {:error, :invalid_response_format} = Ticker.parse_response_body(xml)
+      assert {:error, :invalid_response_format} =
+               Ticker.parse_response_body(xml)
     end
   end
 
   describe "extract_rates/1 error cases" do
     test "raises on missing -time field" do
-      data = %{"#content" => %{"Cube" => [%{"-currency" => "USD", "-rate" => "1.09"}]}}
+      data = %{
+        "#content" => %{"Cube" => [%{"-currency" => "USD", "-rate" => "1.09"}]}
+      }
+
       assert_raise KeyError, fn -> Ticker.extract_rates(data) end
     end
 
@@ -136,19 +144,28 @@ defmodule TickerTest do
     end
 
     test "raises on missing -currency field" do
-      data = %{"-time" => "2022-03-08", "#content" => %{"Cube" => [%{"-rate" => "1.09"}]}}
+      data = %{
+        "-time" => "2022-03-08",
+        "#content" => %{"Cube" => [%{"-rate" => "1.09"}]}
+      }
+
       assert_raise KeyError, fn -> Ticker.extract_rates(data) end
     end
 
     test "raises on non-numeric rate" do
-      data = %{"-time" => "2022-03-08", "#content" => %{"Cube" => [%{"-currency" => "USD", "-rate" => "N/A"}]}}
+      data = %{
+        "-time" => "2022-03-08",
+        "#content" => %{"Cube" => [%{"-currency" => "USD", "-rate" => "N/A"}]}
+      }
+
       assert_raise ArgumentError, fn -> Ticker.extract_rates(data) end
     end
   end
 
   describe "Parser.process_response_data/1 error cases" do
     test "returns error when Cube structure is absent" do
-      assert {:error, :no_data} = Ticker.Parser.process_response_data(%{"Cube" => %{}})
+      assert {:error, :no_data} =
+               Ticker.Parser.process_response_data(%{"Cube" => %{}})
     end
   end
 
@@ -175,7 +192,9 @@ defmodule TickerTest do
         assert result.base == "EUR"
         assert is_list(result.rates)
 
-        currencies = Enum.map(result.rates, fn {currency, _rate} -> currency end)
+        currencies =
+          Enum.map(result.rates, fn {currency, _rate} -> currency end)
+
         assert "USD" in currencies
         assert "JPY" in currencies
         assert "GBP" in currencies

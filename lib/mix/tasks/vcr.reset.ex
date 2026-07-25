@@ -41,6 +41,8 @@ defmodule Mix.Tasks.Vcr.Reset do
       end
     end)
 
-    Mix.shell().info("\nRun `mix test` to re-record cassettes against the live ECB API.")
+    Mix.shell().info(
+      "\nRun `mix test` to re-record cassettes against the live ECB API."
+    )
   end
 end
