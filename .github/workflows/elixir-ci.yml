@@ -10,31 +10,30 @@ permissions:
 jobs:
   build:
     name: Build and test
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       FORCE_COLOR: 1
       MIX_ENV: test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Set up Elixir
         uses: erlef/setup-beam@v1
         with:
-          elixir-version: '1.18.4'
-          otp-version: '26'
+          version-file: .tool-versions
+          version-type: strict
       - name: Restore dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: |
             deps
             _build
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-          restore-keys: ${{ runner.os }}-mix-
+          key: ${{ runner.os }}-mix-${{ hashFiles('.tool-versions', '**/mix.lock') }}
+          restore-keys: ${{ runner.os }}-mix-${{ hashFiles('.tool-versions') }}-
       - name: Install dependencies
         run: mix deps.get
       - name: Compile dependencies
         run: mix deps.compile
       - name: Check unused dependencies
         run: mix deps.unlock --check-unused
-        if: ${{ matrix.lint == true }}
       - name: Run tests
         run: mix test

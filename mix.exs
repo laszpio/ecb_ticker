@@ -5,7 +5,7 @@ defmodule Ticker.MixProject do
     [
       app: :ticker,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.20",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -19,8 +19,8 @@ defmodule Ticker.MixProject do
 
   defp deps do
     [
-      {:tesla, "~> 1.21.1"},
-      {:hackney, "~> 4.7.4"},
+      {:tesla, "~> 1.22"},
+      {:hackney, "~> 4.8"},
       {:elixir_xml_to_map, "~> 3.0"},
       {:exvcr, "~> 0.17.1", only: :test},
       {:meck, "~> 1.2", only: :test},
